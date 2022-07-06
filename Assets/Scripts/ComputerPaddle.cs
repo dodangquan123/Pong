@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ComputerPaddle : MonoBehaviour
+public class ComputerPaddle : Paddle
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public Rigidbody2D ball;
+    private void FixedUpdate(){
+        if (this.ball.velocity.x > 0){
+            if (this.ball.velocity.y > this.transform.position.y){
+                rigidBody.AddForce(Vector2.up * speed);
+            }
+            else if (this.ball.velocity.y < this.transform.position.y){
+                rigidBody.AddForce(Vector2.down * speed);
+            }
+        }
+        else{
+            if (this.transform.position.y < 0){
+                rigidBody.AddForce(Vector2.up * speed);
+            }
+            else if (this.transform.position.y > 0){
+                rigidBody.AddForce(Vector2.down * speed);
+            }
+        }
     }
 }
